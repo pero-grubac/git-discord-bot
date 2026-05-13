@@ -2,6 +2,21 @@
 
 A personal Discord bot that integrates with GitHub to manage issues, track activity, and generate reports — all from Discord.
 
+## 📁 Project Structure
+
+```
+discord-bot/
+├── .env
+├── .gitignore
+├── requirements.txt
+├── main.py
+├── config.py
+└── cogs/
+    ├── issues.py       # Issue management commands
+    ├── webhook.py      # GitHub → Discord webhook receiver
+    └── stats.py        # Activity stats and monthly reports
+```
+
 ## ✨ Features
 
 ### Issue Management
@@ -93,23 +108,5 @@ create table time_logs (
 python main.py
 ```
 
-## 📁 Project Structure
 
-```
-discord-bot/
-├── .env
-├── .gitignore
-├── requirements.txt
-├── main.py
-├── config.py
-└── cogs/
-    ├── issues.py       # Issue management commands
-    ├── webhook.py      # GitHub → Discord webhook receiver
-    └── stats.py        # Activity stats and monthly reports
-```
 
-## 🔗 Related
-
-- [discord.py docs](https://discordpy.readthedocs.io)
-- [GitHub REST API](https://docs.github.com/en/rest)
-- [Supabase docs](https://supabase.com/docs)
