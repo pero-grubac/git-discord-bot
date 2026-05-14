@@ -17,7 +17,7 @@ discord-bot/
     ├── issues.py       # Issue management commands
     ├── webhook.py      # GitHub → Discord webhook receiver
     ├── stats.py        # Activity stats and monthly reports
-    └── activity.py     # Streak, heatmap, top repo
+    └── activity.py     # Streak, top repo
 ```
 
 ## ✨ Features
@@ -40,7 +40,6 @@ discord-bot/
 
 - `/stats` — Show commit and issue activity (last 7 days / this month / last month)
 - `/streak` — Show current and longest commit streak (last 90 days)
-- `/heatmap` — Show commit activity heatmap (last 15 weeks)
 - `/top-repo` — Show most active repo this month
 - 📅 Automatic monthly report sent to a dedicated Discord channel
 
