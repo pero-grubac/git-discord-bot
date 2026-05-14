@@ -1,7 +1,6 @@
 # 🤖 GitHub Discord Bot
 
-A personal Discord bot that integrates with GitHub to manage issues, track activity, and generate reports — all from
-Discord.
+A personal Discord bot that integrates with GitHub to manage issues, track activity, and generate reports — all from Discord.
 
 ## 📁 Project Structure
 
@@ -10,12 +9,15 @@ discord-bot/
 ├── .env
 ├── .gitignore
 ├── requirements.txt
+├── render.yaml
+├── Procfile
 ├── main.py
 ├── config.py
 └── cogs/
     ├── issues.py       # Issue management commands
     ├── webhook.py      # GitHub → Discord webhook receiver
-    └── stats.py        # Activity stats and monthly reports
+    ├── stats.py        # Activity stats and monthly reports
+    └── activity.py     # Streak, heatmap, top repo
 ```
 
 ## ✨ Features
@@ -31,10 +33,15 @@ discord-bot/
 
 - `/repos` — List all registered repos
 - `/register` — Register a new GitHub repo (validates against GitHub API)
+- `/sync-repos` — Sync all GitHub repos to database (adds new ones automatically)
+- `/repo-info` — Show repo details (language, stars, forks, open issues, last push)
 
 ### Stats & Reports
 
 - `/stats` — Show commit and issue activity (last 7 days / this month / last month)
+- `/streak` — Show current and longest commit streak (last 90 days)
+- `/heatmap` — Show commit activity heatmap (last 15 weeks)
+- `/top-repo` — Show most active repo this month
 - 📅 Automatic monthly report sent to a dedicated Discord channel
 
 ### GitHub → Discord Notifications
@@ -73,8 +80,8 @@ Create a `.env` file in the root directory:
 
 ```env
 DISCORD_TOKEN=
-SERVER_ID=
-DISCORD_ISSUE_CHANNEL_ID=
+GUILD_ID=
+DISCORD_CHANNEL_ID=
 DISCORD_STATS_CHANNEL_ID=
 GITHUB_TOKEN=
 GITHUB_USERNAME=
@@ -114,11 +121,31 @@ create table time_logs (
 );
 ```
 
-### 5. Run the bot
+### 5. Discord bot setup
+
+1. Go to [discord.com/developers/applications](https://discord.com/developers/applications) → New Application
+2. Under **Bot** → enable **Message Content Intent**
+3. Under **OAuth2 → URL Generator** → select `bot` scope + permissions: `Send Messages`, `Read Message History`, `Add Reactions`, `View Channels`
+4. Open the generated URL and add the bot to your server
+
+### 6. GitHub webhook setup
+
+1. Go to your repo → **Settings → Webhooks → Add webhook**
+2. Payload URL: `https://your-render-url.onrender.com/webhook`
+3. Content type: `application/json`
+4. Secret: same value as `GITHUB_WEBHOOK_SECRET` in `.env`
+5. Events: select **Issues** only
+
+### 7. Run the bot
 
 ```bash
 python main.py
 ```
 
+## ☁️ Deploy to Render
 
-
+1. Push the repo to GitHub
+2. Go to [render.com](https://render.com) → New → Web Service
+3. Connect your GitHub repo
+4. Render auto-detects `render.yaml` — just fill in the environment variables
+5. Update your GitHub webhook URL to the Render URL
