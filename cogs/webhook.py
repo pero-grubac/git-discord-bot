@@ -19,6 +19,9 @@ def verify_signature(payload: bytes, signature: str) -> bool:
     ).hexdigest()
     return hmac.compare_digest(expected, signature)
 
+@flask_app.route("/health", methods=["GET"])
+def health():
+    return jsonify({"status": "ok"}), 200
 
 @flask_app.route("/webhook", methods=["POST"])
 def github_webhook():
