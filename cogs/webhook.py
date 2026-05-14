@@ -1,9 +1,10 @@
 import hashlib
 import hmac
 import threading
-from flask import Flask, request, jsonify
-import discord
+
 from discord.ext import commands
+from flask import Flask, request, jsonify
+
 from config import DISCORD_ISSUE_CHANNEL_ID, GITHUB_WEBHOOK_SECRET
 
 flask_app = Flask(__name__)

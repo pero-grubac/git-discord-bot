@@ -1,4 +1,5 @@
 import os
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -12,7 +13,6 @@ SERVER_ID = int(os.getenv("SERVER_ID"))
 DISCORD_ISSUE_CHANNEL_ID = int(os.getenv("DISCORD_ISSUE_CHANNEL_ID"))
 GITHUB_WEBHOOK_SECRET = os.getenv("GITHUB_WEBHOOK_SECRET")
 DISCORD_STATS_CHANNEL_ID = os.getenv("GITHUB_WEBHOOK_SECRET")
-
 
 GITHUB_API = "https://api.github.com"
 

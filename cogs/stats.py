@@ -1,12 +1,14 @@
+import asyncio
+from concurrent.futures import ThreadPoolExecutor
+from datetime import datetime, timezone, timedelta
+
 import discord
+import requests
 from discord import app_commands
 from discord.ext import commands
 from discord.ext import tasks
-from datetime import datetime, timezone, timedelta
-from concurrent.futures import ThreadPoolExecutor
-import requests
+
 from config import *
-import asyncio
 
 
 def fetch_repo_commits(args):
